@@ -62,6 +62,14 @@ export function validateCategoryForm(input: { name: string; description: string 
   return errors
 }
 
+export function validateCompletionForm(input: { comment: string }): FieldErrors {
+  const errors: FieldErrors = {}
+  if (!isRequired(input.comment)) errors.comment = 'A closing comment is required.'
+  else if (input.comment.trim().length < 10)
+    errors.comment = 'Please provide at least 10 characters of detail.'
+  return errors
+}
+
 export function validateResolutionForm(input: { resolution: string; resolutionNotes: string }): FieldErrors {
   const errors: FieldErrors = {}
   if (!isRequired(input.resolution)) errors.resolution = 'Resolution summary is required.'
